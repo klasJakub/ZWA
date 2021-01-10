@@ -1,0 +1,38 @@
+{block content}
+
+
+<section>
+  <h2>{$title}</h2>
+  <a n:if="$user->isLoggedIn()" n:href="Forum:addPost id => $id" class="btn">Přidat příspěvek</a>
+
+  <div class="posts">
+    <div n:class="post, $post->user_id === $user->id ? users" n:foreach="$posts as $post">
+      <div class="creator">
+        {$post->user->username}
+      </div>
+      <div class="text">
+        <p>{$post->text}</p>
+      </div>
+      <div class="created">
+        {$post->date|date: 'd.m.Y H:i'}
+      </div>
+      <div class="controls" n:if="$user->isLoggedIn() && ($user->getIdentity()->isAdministrator() || $post->user_id === $user->id)">
+        <a n:href="Forum:editPost id => $post->post_id" class="btn">Upravit</a>
+        <a n:href="Forum:deletePost id => $post->post_id" class="btn">Smazat</a>
+      </div>
+    </div>
+    <div class="pager">
+      <a n:href="Forum:forum id => $id, page => $page - 1" class="page page-before" n:if="$page > 1">
+        <
+      </a>
+      {dump $pages}
+      <a n:href="Forum:forum id => $id, page => $i" n:class="page, $i === $page ? current" n:for="$i = 1;$i <= $pages;$i++">
+        {$i}
+      </a>
+      <a n:href="Forum:forum id => $id, page => $page + 1" class="page page-after" n:if="$page < $pages">
+        >
+      </a>
+    </div>
+  </div>
+
+</section>

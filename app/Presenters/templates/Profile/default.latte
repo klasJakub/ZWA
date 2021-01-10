@@ -1,0 +1,22 @@
+{block content}
+
+<section>
+  <h2>Profil</h2>
+  <a n:href="Profile:edit" class="btn">Upravit profil</a>
+
+  <h3>{$user->getIdentity()->username}</h3>
+   <div class="posts">
+       <div n:class="post, users" n:foreach="$posts as $post">
+         <div class="creator">
+           {$post->user->username}
+         </div>
+         <div class="text">
+           <p>{$post->text}</p>
+         </div>
+         <div class="created">
+           {$post->date|date: 'd.m.Y H:i'}
+         </div>
+         <a n:href="Forum:forum id => $post->forum_id" class="btn">Přejít na forum</a>
+       </div>
+     </div>
+</section>

@@ -1,0 +1,16 @@
+<div class="form form-forum-edit">
+
+  {form addCategory}
+    <div class="form-item">
+      {label name /}
+    {input name}
+    </div>
+
+    {input send}
+  {/form}
+
+  <div class="valid-msg" n:ifset="$validMessage" n:snippet="valid-message">
+    {$validMessage}
+  </div>
+</div>
+

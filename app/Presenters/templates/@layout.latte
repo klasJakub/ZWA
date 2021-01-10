@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+  <link rel="stylesheet" href="{$basePath}/assets/style.css"/>
+  <script src="{$basePath}/assets/jquery.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <ul class="menu">
+      <li><a n:href="Homepage:default">Domů</a></li>
+      <li><a n:href="Forum:default">Fórum</a></li>
+      <li n:if="$user->isLoggedIn() && $user->getIdentity()->isAdministrator()">
+        <a n:href="Category:default">Kategorie</a></li>
+      <li><a n:href="Profile:default" n:if="$user->isLoggedIn()">Profil</a></li>
+      <li n:if="!$user->isLoggedIn()"><a n:href="Sign:default">Přihlásit</a></li>
+      <li n:if="$user->isLoggedIn()"><a n:href="Sign:out">Odhlásit</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="background">
+  <img src="{$basePath}/images/background.jpg" alt=""/>
+</div>
+
+{include content}
+
+<footer>
+  <span class="footer-text">©2021 Jakub Klas</span>
+</footer>
+
+<script src="{$basePath}/assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<div class="form">
+  {form register}
+  <div class="form-item">
+    {label name /}
+    {input name}
+  </div>
+
+
+
+  <div class="form-item">
+    {label password /}
+    {input password}
+  </div>
+
+
+  <div class="form-item">
+    {label repassword /}
+    {input repassword}
+  </div>
+
+    {input submit}
+  {/form}
+
+  <div class="valid-msg" n:ifset="$validMessage" n:snippet="valid-message">
+    {$validMessage}
+  </div>
+</div>
+

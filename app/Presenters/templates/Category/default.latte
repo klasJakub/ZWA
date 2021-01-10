@@ -1,0 +1,17 @@
+{block content}
+
+<section>
+  <h2>Kategorie</h2>
+  <a n:href="Category:add" class="btn">Přidat kategorii</a>
+
+
+  <div class="categories">
+    <div class="category" n:foreach="$categories as $key => $item">
+      <span class="category-name">{$item->name}</span>
+      <div class="controls">
+        <a n:href="Category:add id => $key" class="btn">Upravit</a>
+        <a n:href="Category:delete id => $key" class="btn">Smazat</a>
+      </div>
+    </div>
+  </div>
+</section>

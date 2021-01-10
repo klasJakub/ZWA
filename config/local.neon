@@ -1,0 +1,8 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=localhost;dbname=klasjak1'
+	user: root
+	password: heslo123
+

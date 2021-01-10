@@ -1,0 +1,15 @@
+<div class="form form-forum-edit">
+  {form addPost}
+    <div class="form-item">
+      {label text /}
+    {input text}
+    </div>
+
+    {input send}
+  {/form}
+
+  <div class="valid-msg" n:ifset="$validMessage" n:snippet="valid-message">
+    {$validMessage}
+  </div>
+</div>
+

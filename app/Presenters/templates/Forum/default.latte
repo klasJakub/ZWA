@@ -1,0 +1,31 @@
+{block content}
+
+<section>
+  <h2>Forum</h2>
+  <a n:href="Forum:add" class="btn" n:if="$user->isLoggedIn()">Přidat forum</a>
+
+
+  <div class="forums" n:foreach="$data as $d" n:if="$d['data']">
+    <h3>{$d['name']}</h3>
+    <a n:href="Forum:forum id => $forum->forum_id" n:class="forum, $user->isLoggedIn()
+    && ($user->getIdentity()->isAdministrator() || $user->id === $forum->user->user_id) ? users" n:foreach="$d['data'] as $forum">
+      <div class="ico">
+        <img src="{$basePath}/images/logo.jpg" alt=""/>
+      </div>
+      <div class="created">
+        {$forum->date|date: 'd.m.Y H:i'}
+      </div>
+      <div class="forum-name">
+        {$forum->name}
+      </div>
+      <div class="creator">
+        {$forum->user->username}
+      </div>
+      <object class="controls" n:if="$user->isLoggedIn()
+      && ($user->getIdentity()->isAdministrator() || $user->id === $forum->user->user_id)">
+        <a n:href="Forum:add id => $forum->forum_id" class="btn">Upravit</a>
+        <a n:href="Forum:delete id => $forum->forum_id" class="btn">Smazat</a>
+      </object>
+    </a>
+  </div>
+</section>
